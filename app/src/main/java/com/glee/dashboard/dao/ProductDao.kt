@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.glee.dashboard.model.Product
+import com.glee.dashboard.model.ProductsWithImages
 
 @Dao
 interface ProductDao {
@@ -17,4 +18,7 @@ interface ProductDao {
 
     @Query("SELECT * from product_table")
     fun getProducts(): LiveData<List<Product>>
+
+    @Query("SELECT * FROM product_table")
+    fun loadProductsWithImages(): LiveData<List<ProductsWithImages>>
 }

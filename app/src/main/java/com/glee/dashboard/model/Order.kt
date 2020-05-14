@@ -26,5 +26,7 @@ data class Order(
     var productId: Int,
 
     @SerializedName("status_id")
-    var statusId: String
-)
+    var statusId: Int
+){
+    constructor() : this(0, "", "", 0, 0, 0, 0)
+}

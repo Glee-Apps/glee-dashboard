@@ -1,18 +1,16 @@
 package com.glee.dashboard.source
 
-import android.annotation.SuppressLint
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-@SuppressLint("StaticFieldLeak")
 object ApiService {
 
     private val interceptor = Interceptor { chain ->
 
-        val url = chain.request().newBuilder().addHeader("Authorization", "Bearer ")
+        val url = chain.request().newBuilder().addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOjEsIlVzZXJuYW1lIjoiIn0.KsJ-JVxUnPFAeMJbA19P6wQBWVrB6fwI0ruc8KnN1qg")
             .build()
         chain.proceed(url)
     }
@@ -31,7 +29,7 @@ object ApiService {
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder().client(apiClient)
             .client(okHttpClient)
-            .baseUrl("http://api.africasokoni.ke/api/v1/")
+            .baseUrl("http://172.20.10.4:8000/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

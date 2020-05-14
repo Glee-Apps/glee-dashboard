@@ -1,8 +1,6 @@
 package com.glee.dashboard.model
 
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "product_table")
@@ -29,7 +27,8 @@ data class Product(
     @SerializedName("cost")
     var cost: Int,
 
-    @Ignore
     @SerializedName("images")
-    var images: List<Image>
-)
+    @Ignore var images: List<Image>?
+) {
+    constructor() : this(0, "", "", "", "", 0, 0, null)
+}

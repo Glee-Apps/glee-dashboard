@@ -28,4 +28,20 @@ class HomeFragment : Fragment() {
         })
         return root
     }
+
+    companion object {
+
+        private const val TAG = "OrdersListActivity"
+
+        private const val ARG_SECTION_NUMBER = "section_number"
+
+        @JvmStatic
+        fun newInstance(sectionNumber: Int): HomeFragment {
+            return HomeFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(ARG_SECTION_NUMBER, sectionNumber)
+                }
+            }
+        }
+    }
 }
