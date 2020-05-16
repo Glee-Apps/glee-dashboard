@@ -95,65 +95,6 @@ class OrderRepository(application: Application) : CoroutineScope {
         return liveData
     }
 
-//
-//
-//    fun getUser(id: String): MutableLiveData<UserResponse> {
-//
-//        val liveData = MutableLiveData<UserResponse>()
-//
-//        client.getUser(id).enqueue(object : Callback<UserResponse> {
-//            override fun onResponse(
-//                call: Call<UserResponse>,
-//                response: Response<UserResponse>
-//            ) {
-//                if (response.isSuccessful) {
-//                    liveData.value = response.body()
-//
-//                    if (response.code() == 200) {
-//                        liveData.value = response.body()
-//                    } else {
-//                        liveData.value = null
-//                    }
-//
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-//                t.printStackTrace()
-//            }
-//        })
-//        return liveData
-//    }
-//
-//
-//    fun updateStatus(id: String, req: StatusUpdateRequest): MutableLiveData<Message> {
-//
-//        val liveData = MutableLiveData<Message>()
-//
-//        client.updateStatus(id, req).enqueue(object : Callback<Message> {
-//            override fun onResponse(
-//                call: Call<Message>,
-//                response: Response<Message>
-//            ) {
-//                if (response.isSuccessful) {
-//                    liveData.value = response.body()
-//
-//                    if (response.code() == 200) {
-//                        liveData.value = response.body()
-//                    } else {
-//                        liveData.value = null
-//                    }
-//
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<Message>, t: Throwable) {
-//                t.printStackTrace()
-//            }
-//        })
-//        return liveData
-//    }
-
     fun getOrders(): LiveData<List<Order>>? = orderDao?.getOrders()
 
     fun saveOrder(order: Order) {
@@ -162,7 +103,6 @@ class OrderRepository(application: Application) : CoroutineScope {
 
     private suspend fun saveOrdersBG(order: Order) {
         withContext(Dispatchers.IO) {
-            orderDao?.nukeOrderTable()
             orderDao?.setOrder(order)
         }
     }
@@ -175,7 +115,6 @@ class OrderRepository(application: Application) : CoroutineScope {
 
     private suspend fun saveProductsBG(product: Product) {
         withContext(Dispatchers.IO) {
-            productDao?.nukeProductTable()
             productDao?.setProduct(product)
         }
     }
@@ -186,7 +125,6 @@ class OrderRepository(application: Application) : CoroutineScope {
 
     private suspend fun saveImagesBG(image: Image) {
         withContext(Dispatchers.IO) {
-            imageDao?.nukeImageTable()
             imageDao?.setImage(image)
         }
     }

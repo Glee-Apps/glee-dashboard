@@ -15,7 +15,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:subtitle="Total Ksh.1,079,876"
         app:title="Process Orders" />
 
     <com.google.android.material.tabs.TabLayout
@@ -44,17 +43,6 @@
             android:text="COMPLETED" />
 
     </com.google.android.material.tabs.TabLayout>
-
-<!--    <TextView-->
-<!--        android:id="@+id/textView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:textStyle="bold"-->
-<!--        android:text="Picked up &amp; Under way orders"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tabs" />-->
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"

@@ -6,8 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.glee.dashboard.model.Image
-import com.glee.dashboard.model.Product
-import com.glee.dashboard.model.ProductsWithImages
 
 @Dao
 interface ImageDao {
