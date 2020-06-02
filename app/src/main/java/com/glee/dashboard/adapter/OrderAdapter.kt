@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.PopupMenu
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -35,6 +38,7 @@ class OrderAdapter(
         var productName = itemView.findViewById(R.id.productName) as TextView
         var updatedAt = itemView.findViewById(R.id.updatedAt) as TextView
         var totalAmount = itemView.findViewById(R.id.totalAmount) as TextView
+        var orderButton = itemView.findViewById(R.id.orderButton) as ConstraintLayout
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -56,7 +60,7 @@ class OrderAdapter(
                 ?.observe(mContext as FragmentActivity, Observer { products ->
                     products.forEach {
                         if (item.productId == it.product!!.id) {
-                            productName.text = "${it.product?.name} X ${item.quantity}"
+                            productName.text = " ${item.quantity} X ${it.product?.name}"
 
                             val d = it.product?.updatedAt!!.split("T").toTypedArray()
 
@@ -71,6 +75,58 @@ class OrderAdapter(
                             val total = item.quantity * it.product!!.cost
                             totalAmount.text = "Ksh.${"%,d".format(total)}"
                             image.load(it.images!![0].url)
+
+                            orderButton.setOnLongClickListener {
+
+                                if (item.statusId == 1) {
+                                    val popupMenu = PopupMenu(mContext, orderButton)
+                                    popupMenu.menuInflater.inflate(
+                                        R.menu.order_item_menu_pending,
+                                        popupMenu.menu
+                                    )
+                                    popupMenu.setOnMenuItemClickListener { item ->
+                                        when (item.itemId) {
+                                            R.id.action_deny_order ->
+                                                Toast.makeText(
+                                                    mContext,
+                                                    "You Clicked : " + item.title,
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            R.id.action_move_to_active ->
+                                                Toast.makeText(
+                                                    mContext,
+                                                    "You Clicked : " + item.title,
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+
+                                        }
+                                        true
+                                    }
+                                    popupMenu.show()
+                                } else if (item.statusId == 2) {
+
+                                    val popupMenuActive = PopupMenu(mContext, orderButton)
+                                    popupMenuActive.menuInflater.inflate(
+                                        R.menu.order_item_menu_active,
+                                        popupMenuActive.menu
+                                    )
+                                    popupMenuActive.setOnMenuItemClickListener { item ->
+                                        when (item.itemId) {
+                                            R.id.action_deny_order_active ->
+                                                Toast.makeText(
+                                                    mContext,
+                                                    "You Clicked : " + item.title,
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                        }
+                                        true
+                                    }
+                                    popupMenuActive.show()
+
+                                }
+
+                                return@setOnLongClickListener true
+                            }
                         }
                     }
                 })

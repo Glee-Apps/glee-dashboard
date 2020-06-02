@@ -29,7 +29,7 @@ object ApiService {
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder().client(apiClient)
             .client(okHttpClient)
-            .baseUrl("http://172.20.10.4:8000/api/")
+            .baseUrl("http://172.20.10.3:8000/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
