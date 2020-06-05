@@ -1,9 +1,13 @@
 package com.glee.dashboard.model
 
+import android.os.Parcelable
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
 @Entity(tableName = "product_table")
+@Parcelize
 data class Product(
     @PrimaryKey(autoGenerate = false)
     @SerializedName("ID")
@@ -27,8 +31,12 @@ data class Product(
     @SerializedName("cost")
     var cost: Int,
 
+    @SerializedName("category_id")
+    var category: Int,
+
+
     @SerializedName("images")
-    @Ignore var images: List<Image>?
-) {
-    constructor() : this(0, "", "", "", "", 0, 0, null)
+    @Ignore var images: @RawValue List<Image>?
+) : Parcelable {
+    constructor() : this(0, "", "", "", "", 0, 0, 0, null)
 }

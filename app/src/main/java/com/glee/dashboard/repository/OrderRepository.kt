@@ -1,6 +1,7 @@
 package com.glee.dashboard.repository
 
 import android.app.Application
+import android.provider.MediaStore
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.glee.dashboard.dao.ImageDao
@@ -108,6 +109,8 @@ class OrderRepository(application: Application) : CoroutineScope {
     }
 
     fun getProducts(): LiveData<List<ProductsWithImages>>? = productDao?.loadProductsWithImages()
+
+    fun getProductImages(id: Int): LiveData<List<Image>>? = imageDao?.getImagesForProduct(id)
 
     fun saveProduct(product: Product) {
         launch { saveProductsBG(product) }

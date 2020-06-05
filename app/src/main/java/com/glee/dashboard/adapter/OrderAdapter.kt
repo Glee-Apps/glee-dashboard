@@ -73,7 +73,7 @@ class OrderAdapter(
                             updatedAt.text = "$outputDateStr at ${d[1].take(5)}"
 
                             val total = item.quantity * it.product!!.cost
-                            totalAmount.text = "Ksh.${"%,d".format(total)}"
+                            totalAmount.text = "KSH.${"%,d".format(total)}"
                             image.load(it.images!![0].url)
 
                             orderButton.setOnLongClickListener {

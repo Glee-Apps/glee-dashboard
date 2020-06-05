@@ -17,4 +17,7 @@ interface ImageDao {
 
     @Query("SELECT * from image_table")
     fun getImages(): LiveData<List<Image>>
+
+    @Query("SELECT * from image_table Where productId=:id")
+    fun getImagesForProduct(id: Int): LiveData<List<Image>>
 }

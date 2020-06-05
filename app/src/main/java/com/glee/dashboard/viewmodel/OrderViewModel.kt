@@ -35,6 +35,8 @@ class OrderViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getProducts(): LiveData<List<ProductsWithImages>>? = repository.getProducts()
 
+    fun getProductImages(id: Int): LiveData<List<Image>>? = repository.getProductImages(id)
+
 //    fun getUser(id: String): MutableLiveData<UserResponse> {
 //        return repository.getUser(id)
 //    }

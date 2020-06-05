@@ -1,6 +1,7 @@
 package com.glee.dashboard.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import com.glee.dashboard.ProductDetailsActivity
 import com.glee.dashboard.R
 import com.glee.dashboard.model.Product
 import com.glee.dashboard.model.ProductsWithImages
@@ -24,6 +27,9 @@ class ProductAdapter(
         var image = itemView.findViewById(R.id.image) as ImageView
         var productName = itemView.findViewById(R.id.productName) as TextView
         var productQuantity = itemView.findViewById(R.id.productQuantity) as TextView
+        var productCategory = itemView.findViewById(R.id.productCategory) as TextView
+        var productButton = itemView.findViewById(R.id.productButton) as ConstraintLayout
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,6 +52,19 @@ class ProductAdapter(
             if (item.images!!.isNotEmpty()) {
                 image.load(item.images!![0].url)
             }
+
+            if (item.product!!.category == 1) {
+                productCategory.text = "TELEVISIONS"
+            } else {
+                productCategory.text = "SHOES"
+            }
+
+            productButton.setOnClickListener {
+                val intent = Intent(mContext, ProductDetailsActivity::class.java)
+                intent.putExtra("product", item.product)
+                mContext.startActivity(intent)
+            }
+
         }
     }
 

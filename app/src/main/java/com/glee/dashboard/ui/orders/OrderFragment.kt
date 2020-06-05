@@ -67,7 +67,7 @@ class OrderFragment : Fragment() {
                                 }
 
                                 (activity as AppCompatActivity?)!!.supportActionBar!!.subtitle =
-                                    "Total Ksh.${"%,d".format(totalAmountList.sum())}"
+                                    "Total KSH.${"%,d".format(totalAmountList.sum())}"
                             }
                         })
                 }
