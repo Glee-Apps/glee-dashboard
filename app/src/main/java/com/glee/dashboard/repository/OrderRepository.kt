@@ -50,9 +50,9 @@ class OrderRepository(application: Application) : CoroutineScope {
                 response: Response<BaseOrdersResponse>
             ) {
                 if (response.isSuccessful) {
-                    liveData.value = response.body()
+//                    liveData.value = response.body()
 
-                    if (response.code() == 200) {
+                    if (response.body() != null) {
                         liveData.value = response.body()
                     } else {
                         liveData.value = null
@@ -78,7 +78,7 @@ class OrderRepository(application: Application) : CoroutineScope {
                 response: Response<BaseProductsResponse>
             ) {
                 if (response.isSuccessful) {
-                    liveData.value = response.body()
+//                    liveData.value = response.body()
 
                     if (response.code() == 200) {
                         liveData.value = response.body()
