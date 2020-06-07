@@ -79,6 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="right|top"
+                android:textColor="@color/colorAccent"
                 android:maxLines="1"
                 tools:text="SHIRT" />
 

@@ -1,13 +1,12 @@
 package com.glee.dashboard
 
-import android.graphics.Color.red
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -18,6 +17,7 @@ import com.glee.dashboard.model.Product
 import com.glee.dashboard.viewmodel.OrderViewModel
 import kotlinx.android.synthetic.main.activity_product_details.*
 import kotlinx.android.synthetic.main.content_product_details.*
+
 
 class ProductDetailsActivity : AppCompatActivity() {
 
@@ -40,16 +40,16 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         val product: Product = intent.getParcelableExtra("product")!!
 
-        supportActionBar!!.title = ""
+        supportActionBar!!.title = "Product Details"
 
 
-        imagesRV.adapter = mAdapter
-
-        imagesRV.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-        val snapHelper = PagerSnapHelper()
-
-        snapHelper.attachToRecyclerView(imagesRV)
+//        imagesRV.adapter = mAdapter
+//
+//        imagesRV.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+//
+//        val snapHelper = PagerSnapHelper()
+//
+//        snapHelper.attachToRecyclerView(imagesRV)
 
         orderViewModel =
             ViewModelProviders.of(this).get(OrderViewModel::class.java)
@@ -64,47 +64,52 @@ class ProductDetailsActivity : AppCompatActivity() {
         //Part1
         val entries = ArrayList<Entry>()
 
-//Part2
+        //Part2
         entries.add(Entry(1f, 10f))
         entries.add(Entry(2f, 2f))
         entries.add(Entry(3f, 7f))
         entries.add(Entry(4f, 20f))
         entries.add(Entry(5f, 16f))
 
-//Part3
+        //Part3
         val vl = LineDataSet(entries, "My Type")
 
-//Part4
+        //Part4
         vl.setDrawValues(false)
         vl.setDrawFilled(true)
         vl.lineWidth = 3f
         vl.fillColor = R.color.colorPrimary
         vl.fillAlpha = R.color.colorAccent
 
-//Part5
+        //Part5
         lineChart.xAxis.labelRotationAngle = 0f
 
-//Part6
+        //Part6
         lineChart.data = LineData(vl)
 
-//Part7
+        //Part7
         lineChart.axisRight.isEnabled = false
         lineChart.xAxis.axisMaximum = 0 + 0.1f
 
-//Part8
+        //Part8
         lineChart.setTouchEnabled(true)
         lineChart.setPinchZoom(true)
 
-//Part9
+        //Part9
         lineChart.description.text = "Days"
         lineChart.setNoDataText("No forex yet!")
 
-//Part10
+        //Part10
         lineChart.animateX(1800, Easing.EaseInExpo)
 
-//Part11
+        //Part11
         val markerView = CustomMarker(this, R.layout.marker_view)
         lineChart.marker = markerView
+
+        seePhotos.setOnClickListener {
+            val intent = Intent(this, ImageListActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -118,8 +123,22 @@ class ProductDetailsActivity : AppCompatActivity() {
             mAdapter = this.let {
                 ImageAdapter(this, results)
             }
-            imagesRV.adapter = mAdapter
+//            imagesRV.adapter = mAdapter
         } else mAdapter?.updateData(results)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_product_details, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_search -> {
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

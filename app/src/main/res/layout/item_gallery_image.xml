@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.glee.dashboard.SquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:foreground="?selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/imageViewGallery"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#20000000"
+        android:scaleType="centerCrop" />
+
+</com.glee.dashboard.SquareLayout>

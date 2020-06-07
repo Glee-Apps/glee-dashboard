@@ -13,19 +13,36 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Test product 1"
-            android:textColor="#000000"
-            android:textSize="21sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:padding="8dp"
+                android:text="Test product 1"
+                android:textColor="#000000"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipIcon="@drawable/ic_bubble_chart_black_24dp"
+                android:text="TELEVISION"/>
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:paddingStart="8dp"
+            android:paddingBottom="8dp"
             android:text="Selling at KSH.20,000" />
 
         <View
@@ -35,38 +52,67 @@
             android:layout_marginEnd="8dp"
             android:background="#30000000" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="A material metaphor is the unifying theory of a rationalized space and a system of motion. The material is grounded in tactile reality, inspired by the study of paper and ink, yet technologically advanced and open to imagination and magic." />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp">
 
-            <RatingBar
-                android:id="@+id/rating"
-                style="?android:attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:stepSize="0.1" />
+                android:layout_weight="0.6">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <RatingBar
+                    android:id="@+id/rating"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:stepSize="0.1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8sp"
+                    android:text="4.0 . 654 reviews" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="4.0 . 654 reviews" />
+                android:layout_weight="0.4">
+
+                <TextView
+                    android:id="@+id/seePhotos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:padding="8sp"
+                    android:text="See Photos"
+                    android:textColor="@color/colorAccent" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Product Sales Graph"
             android:padding="8dp"
+            android:text="Product Sales Graph"
+            android:textColor="#000000"
             android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
@@ -77,6 +123,32 @@
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:padding="9dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Product Interaction Graph"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.6dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="#30000000" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart2"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginStart="5dp"

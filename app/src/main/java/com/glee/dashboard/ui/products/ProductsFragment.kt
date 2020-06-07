@@ -59,7 +59,7 @@ class ProductsFragment : Fragment() {
                 loadResults(products.toMutableList())
 
                 (activity as AppCompatActivity?)!!.supportActionBar!!.subtitle =
-                    "${"%,d".format(products.size)} Products"
+                    "${"%,d".format(products.size)} Active Products"
             })
 
         return root

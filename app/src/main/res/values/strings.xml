@@ -4,6 +4,7 @@
     <string name="title_order">Orders</string>
     <string name="title_products">Products</string>
     <string name="title_search">Search</string>
+    <string name="title_edit">Edit</string>
     <string name="tab_text_1">Pending</string>
     <string name="tab_text_2">Active</string>
     <string name="tab_text_3">Completed</string>

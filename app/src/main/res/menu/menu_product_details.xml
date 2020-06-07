@@ -2,6 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.glee.dashboard.ProductDetailsActivity">
+
+    <item
+        android:id="@+id/action_edit"
+        android:icon="@drawable/ic_edit_black_24dp"
+        android:title="@string/title_edit"
+        app:showAsAction="always"/>
+
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
